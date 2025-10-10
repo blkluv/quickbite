@@ -4,7 +4,7 @@ import { FaRobot, FaUser } from "react-icons/fa";
 import { MdRestaurant } from "react-icons/md";
 import axios from "axios";
 
-const serverUrl = import.meta.env.VITE_SERVER_URL || "http://localhost:8000";
+const serverUrl = import.meta.env.VITE_SERVER_URL ;
 
 const Chatbot = ({ isOpen, onClose }) => {
   const [messages, setMessages] = useState([

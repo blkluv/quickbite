@@ -1,8 +1,62 @@
-Step by step run command
+Step by step run commands
 
-
+# Build all images
 docker compose -f docker-compose.dev.yml build
 
-docker compose -f docker-compose.dev.yml up -d
+# Build and start (detached) in one go
+docker compose -f docker-compose.dev.yml up --build -d
 
+# Or start only frontend (detached)
+docker compose -f docker-compose.dev.yml up -d frontend
+
+# Check status
 docker compose -f docker-compose.dev.yml ps
+
+# Follow logs (Ctrl+C to stop)
+docker compose -f docker-compose.dev.yml logs -f
+
+# Restart just frontend
+docker compose -f docker-compose.dev.yml restart frontend
+
+# Stop all services (containers remain)
+docker compose -f docker-compose.dev.yml stop
+
+# Stop and remove containers + network
+docker compose -f docker-compose.dev.yml down
+
+# Also remove volumes (data loss)
+# docker compose -f docker-compose.dev.yml down -v
+
+
+
+https://quickbite.dedyn.io
+
+sudo certbot certonly --standalone -d quickbite.dedyn.io -d www.quickbite.dedyn.io
+
+
+Successfully received certificate.
+Certificate is saved at: /etc/letsencrypt/live/quickbite.dedyn.io/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/quickbite.dedyn.io/privkey.pem
+
+
+sudo cp /etc/letsencrypt/live/quickbite.dedyn.io/fullchain.pem /etc/ssl/certs/ssl.crt
+
+
+ sudo cp /etc/letsencrypt/live/quickbite.dedyn.io/privkey.pem /etc/ssl/private/ssl.key
+
+=======================================================================
+
+ ssh -i "quickbite-key.pem" ubuntu@3.111.58.129
+
+ cd quickbite after
+
+ docker compose build
+
+ docker compose up -d
+
+ or 
+
+ docker compose up --build -d
+
+
+ 
