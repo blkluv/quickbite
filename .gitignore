@@ -40,7 +40,7 @@ dist-ssr
 # Docker
 .dockerignore
 
-# important files
-.txt
-.pem
-.p12
+# Sensitive files
+*.txt
+*.pem
+*.p12
