@@ -44,3 +44,4 @@ dist-ssr
 *.txt
 *.pem
 *.p12
+*.pub
