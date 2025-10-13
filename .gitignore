@@ -45,3 +45,4 @@ dist-ssr
 *.pem
 *.p12
 *.pub
+nginx/ssl
