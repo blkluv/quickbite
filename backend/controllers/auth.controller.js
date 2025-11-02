@@ -98,10 +98,16 @@ export const signIn = async (req, res) => {
       return res.status(400).json({ message: "Please enter a valid email address" });
     }
 
+
+
     // Check if user exists
     const user = await User.findOne({ email: email.toLowerCase().trim() });
     if (!user) {
       return res.status(404).json({ message: "No account found with this email address" });
+    }
+
+    if(!user.password){
+      return res.status(401).json({message:"User is signup with External Server"})
     }
 
     // Verify password
@@ -121,6 +127,7 @@ export const signIn = async (req, res) => {
 
     return res.status(200).json(user);
   } catch (error) {
+    console.log(error.stack)
     return res.status(500).json({ message: `Sign in error: ${error.message}` });
   }
 };
@@ -155,9 +162,13 @@ export const sendOtp = async (req, res) => {
       return res.status(404).json({ message: "No account found with this email address" });
     }
 
+    if(!user.password){
+      return res.status(400).json({message:"User is signup with external service. This user can't change password"})
+    }
+
     // Generate and save OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    user.resetOtp = otp;
+    user.resetPasswordOtp = otp;
     user.otpExpires = Date.now() + 5 * 60 * 1000; // 5 minutes from now
     user.isOptVerified = false;
     await user.save();
@@ -174,6 +185,7 @@ export const sendOtp = async (req, res) => {
 export const verifyOtp = async (req, res) => {
   try {
     const { email, otp } = req.body;
+
 
     // Validate required fields
     if (!email || !otp) {
@@ -193,11 +205,12 @@ export const verifyOtp = async (req, res) => {
       return res.status(404).json({ message: "No account found with this email address" });
     }
 
-    // if (!user.resetOtp) {
-    //   return res.status(400).json({ message: "No OTP request found. Please request a new OTP" });
-    // }
+    if (!user.resetPasswordOtp) {
+      return res.status(400).json({ message: "No OTP request found. Please request a new OTP" });
+    }
 
-    if (user.resetOtp !== otp) {
+
+    if (user.resetPasswordOtp !== parseInt(otp)) {
       return res.status(400).json({ message: "Invalid OTP. Please check and try again" });
     }
 
@@ -207,7 +220,7 @@ export const verifyOtp = async (req, res) => {
 
     // Mark OTP as verified
     user.isOptVerified = true;
-    user.resetOtp = undefined;
+    user.resetPasswordOtp = null;
     user.otpExpires = undefined;
     await user.save();
     
@@ -249,9 +262,14 @@ export const resetPassword = async (req, res) => {
 
     // Find user
     const user = await User.findOne({ email: email.toLowerCase().trim() });
+
     
     if (!user) {
       return res.status(404).json({ message: "No account found with this email address" });
+    }
+
+    if(!user.password){
+      return res.status(400).json({message:"User is signup with external service. This user can't change password"})
     }
 
     if (!user.isOptVerified) {
