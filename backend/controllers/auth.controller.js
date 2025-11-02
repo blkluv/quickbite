@@ -193,9 +193,9 @@ export const verifyOtp = async (req, res) => {
       return res.status(404).json({ message: "No account found with this email address" });
     }
 
-    if (!user.resetOtp) {
-      return res.status(400).json({ message: "No OTP request found. Please request a new OTP" });
-    }
+    // if (!user.resetOtp) {
+    //   return res.status(400).json({ message: "No OTP request found. Please request a new OTP" });
+    // }
 
     if (user.resetOtp !== otp) {
       return res.status(400).json({ message: "Invalid OTP. Please check and try again" });
