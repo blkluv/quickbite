@@ -1,270 +1,243 @@
-# 🍽️ Food Delivery Platform — Enterprise MERN Stack
+# LinkTower
 
-> **A production-grade, full-stack food delivery ecosystem** featuring real-time order tracking, AI-powered conversational assistant, multi-vendor management, and seamless user experiences.
+Linktower is like Linktree but better, free, and open-source, featuring custom icons, image carousels, looping video support, and more. Build your own link in bio page, portfolio, blog, or simple landing page with LinkTower.
 
-![MERN Stack](https://img.shields.io/badge/Stack-MERN-green?style=for-the-badge)
+## ✨ Features
 
-![AI Powered](https://img.shields.io/badge/AI-Google%20Gemini-orange?style=for-the-badge)
+- **Icon Support**: Hundreds of icons from Iconify plus custom local SVGs
+- **Video Support**: Embed looping videos (MP4) in custom links for portfolio showcases
+- **File Downloads**: Support for downloadable assets with custom styling
+- **Contact Form**: Integrated contact form using [Web3Forms](https://web3forms.com)
+- **Customizable Themes**: Premade themes for light and dark mode
+- **Optional Blog**: Full-featured blog with custom OpenGraph images per post
+- **RSS & Sitemap**: Automatic generation for SEO
 
+## 🚀 Getting started
 
-[![Website](https://img.shields.io/badge/Website-quickbite.dedyn.io-blue?style=for-the-badge)](https://quickbite.dedyn.io)
-
----
-
-## 🌟 Platform Overview
-
-This platform revolutionizes food delivery by combining traditional e-commerce features with cutting-edge AI capabilities. Built with JavaScript (no TypeScript) for maximum accessibility, it demonstrates enterprise-level architecture patterns while remaining developer-friendly.
-
-**What makes this special:**
-- 🤖 **AI-First Approach**: Natural language product discovery using Google Gemini + LangChain/LangGraph
-- ⚡ **Real-time Everything**: Socket.io powers instant order updates and live tracking
-- 🏪 **Multi-Vendor Ready**: Built-in shop owner dashboards and inventory management
-- 🎯 **Smart Recommendations**: ML-driven suggestions based on order history and preferences
-- 🗺️ **Location Intelligence**: City-scoped discovery with geospatial queries
-- 🔒 **Production Security**: Session-based auth, role-based access, and data sanitization
-
----
-
-## ✨ Key Features
-
-### 👥 For Customers
-- 🔍 **Smart Search**: AI-powered natural language search ("show me pizzas under ₹200")
-- 💬 **Conversational Shopping**: Chat with the bot to discover products and get recommendations
-- 🛒 **Multi-Shop Cart**: Order from multiple restaurants in a single checkout
-- 📍 **Location-Based Discovery**: Find nearby shops and items relevant to your city
-- 📦 **Live Order Tracking**: Real-time status updates from placement to delivery
-- ⭐ **Personalized Recommendations**: Get suggestions based on your order history
-
-### 🏪 For Shop Owners
-- 📊 **Owner Dashboard**: Comprehensive view of your shop, items, and orders
-- 🍕 **Item Management**: Full CRUD operations with image upload via Cloudinary
-- 📋 **Order Processing**: Real-time order notifications and status management
-- 🏷️ **Rich Product Details**: Support for categories, food types (veg/non-veg), ratings, and more
-- 📈 **Business Insights**: Track popular items and customer preferences
-
-### 🚚 For Delivery Partners
-- 🗺️ **Integrated Tracking**: Delivery assignment and route management
-- 📱 **Real-time Updates**: Instant notifications for new assignments
-- ✅ **Status Management**: Update delivery progress in real-time
-
----
-
-## 🏗️ Architecture & Design Philosophy
-
-### Backend Architecture (Express.js + Node.js)
-
-**Layered Design Pattern:**
-```
-Routes → Controllers → Services → Models → Database
+Run this in your terminal:
+```bash
+git clone github.com/mitchell-wallace/LinkTower
+cd LinkTower
+pnpm install
+pnpm run dev
 ```
 
-- **Routes Layer**: Clean RESTful endpoint definitions with middleware chaining
-- **Controllers**: HTTP request/response handling and validation
-- **Services**: Business logic isolation (e.g., chatbot intelligence, order orchestration)
-- **Models**: Mongoose schemas with proper relationships and indexes
-- **Middleware**: Authentication guards, error handling, file upload processing
+To use the contact form, you will need to get an access key from [Web3Forms](https://web3forms.com). Add the access key to the `siteConfig.json` file.
 
-**Key Technical Decisions:**
-- 🔐 Session-based authentication for stateful connections
-- 🔌 Socket.io for bidirectional real-time communication
-- 📦 Service pattern for complex business logic (chatbot, recommendations)
-- 🎨 Controller-service separation for testability
-- 🗄️ MongoDB with Mongoose for flexible document modeling
+## 🧞 Commands
 
-### Frontend Architecture (React + Vite)
+All commands are run from the root of the project, from a terminal:
 
-**Modern React Patterns:**
-```
-Pages → Components → Hooks → Redux Store
-```
+|| Command           | Action                                       |
+|| :---------------- | :------------------------------------------- |
+|| `pnpm install`     | Installs dependencies                        |
+|| `pnpm run dev`     | Starts local dev server at `localhost:3030`  |
+|| `pnpm run build`   | Build your production site to `./dist/`      |
+|| `pnpm run preview` | Preview your build locally, before deploying |
 
-- **Pages**: Route-level components with lazy loading potential
-- **Components**: Reusable UI pieces (FoodCard, CartItemCard, Chatbot)
-- **Custom Hooks**: Data fetching abstraction (useGetCurrentUser, useGetItemByCity)
-- **Redux Store**: Centralized state management (user, cart, orders, socket)
-- **Vite**: Lightning-fast HMR and optimized production builds
+## 🧪 Testing
 
-**UX Highlights:**
-- 🎨 Responsive design with mobile-first approach
-- ⚡ Optimistic UI updates with real-time sync
-- 🎭 Custom loader animations (scooter loader for branded experience)
-- 🧩 Component composition for maximum reusability
+### Unit tests (Vitest)
 
----
+Run the unit test suite using Vitest:
 
-## 🧠 AI & Intelligence Layer
-
-### Conversational Assistant
-
-The platform features a sophisticated chatbot powered by Google Gemini (LangChain/LangGraph):
-
-**Intent Recognition:**
-- 🎯 Price-based queries: "show items under ₹150"
-- 🔎 Category search: "find chinese food near me"
-- 💡 Recommendations: "what should I order based on my history?"
-- 🌟 Popular items: "show me trending dishes"
-- 👋 Conversational greetings and natural language understanding
-
-**Technical Implementation:**
-- **LangGraph State Machine**: Nodes for analyze → search → recommend → respond
-- **Intelligent Fallback**: Works with or without AI API (deterministic DB queries as fallback)
-- **Context Persistence**: MongoDB/MemorySaver for conversation history
-- **Smart Extraction**: Regex + NLP for price ranges, categories, and intents
-
-**Recommendation Engine:**
-- Analyzes user's past orders (order history mining)
-- Excludes already-ordered items to suggest new experiences
-- Considers ratings, popularity, and category preferences
-- Falls back to trending items for new users
-
----
-
-## 🔎 API Design
-
-### RESTful Endpoints
-
-**Authentication & Users:**
-```
-POST   /api/auth/signup          Register new user
-POST   /api/auth/signin          Authenticate user
-POST   /api/auth/signout         End session
-POST   /api/auth/forgot-password Reset password flow
-GET    /api/user/current         Get authenticated user
-PUT    /api/user/location        Update user location
+```bash
+pnpm test
 ```
 
-**Shops & Discovery:**
-```
-GET    /api/shops                List shops (city-scoped)
-GET    /api/shops/:id            Get shop details
-POST   /api/shops                Create shop (owner)
-PUT    /api/shops/:id            Update shop (owner)
-DELETE /api/shops/:id            Delete shop (owner)
+To run tests once in headless mode (useful for CI):
+
+```bash
+pnpm test:run
 ```
 
-**Items & Catalog:**
-```
-GET    /api/items                Search items (city-scoped)
-GET    /api/items/:id            Get item details
-POST   /api/items                Add item (owner)
-PUT    /api/items/:id            Update item (owner)
-DELETE /api/items/:id            Delete item (owner)
+### End-to-end tests (Playwright)
+
+The Playwright suite exercises the homepage, contact form, and blog archive using a dedicated test build of the site.
+
+Run all e2e tests:
+
+```bash
+pnpm exec playwright test --reporter=list
 ```
 
-**Orders & Checkout:**
-```
-POST   /api/orders               Place order
-GET    /api/orders               Get user orders
-GET    /api/orders/:id           Get order details
-PUT    /api/orders/:id/status    Update order status (owner)
+This will:
+
+- Build a test variant of the site via `pnpm run build:test` (wired through Playwright's `webServer` config)
+- Use `src/siteConfig-test.json` instead of `src/siteConfig.json`
+- Use the `blog-test` collection in `src/content/blog-test/` (with Alpha/Beta/Gamma/Delta/Epsilon posts) instead of your real `src/content/blog/`
+- Start `astro preview` for the test build on `http://localhost:4322` and run the browser tests against it
+
+Your real content and configuration are never modified as part of the e2e test run.
+
+If you have not installed Playwright browsers yet, run:
+
+```bash
+pnpm exec playwright install
 ```
 
-**AI Chatbot:**
-```
-POST   /api/chatbot/chat         Send message, get products/recommendations
-GET    /api/chatbot/history      Retrieve conversation history
-```
+## 🎨 Customization
 
-**Response Format:**
+### Color Variants
+
+LinkTower supports six color variants, each with solid and gradient versions:
+
+- **base**: Default theme colors
+- **primary**: Dark blue accent
+- **secondary**: Peach/coral accent
+- **neutral**: Neutral gray tones
+
+### Custom Links
+
+Custom links support several display modes:
+
+#### Basic Link
 ```json
 {
-  "success": true,
-  "data": { ... },
-  "message": "Operation successful"
+  "id": "unique-id",
+  "title": "My Link",
+  "description": "Optional description",
+  "url": "https://example.com",
+  "icon": "link",
+  "color": "primary"
 }
 ```
 
+#### Link with Image
+```json
+{
+  "id": "unique-id",
+  "title": "My Project",
+  "url": "https://example.com",
+  "image": "project-screenshot.png",
+  "imageAlt": "Screenshot of my project",
+  "color": "secondary"
+}
+```
+
+#### Link with Video
+Videos autoplay silently on loop (like animated GIFs). **Only MP4 format is supported** for cross-browser compatibility.
+
+```json
+{
+  "id": "unique-id",
+  "title": "Demo Video",
+  "url": "https://example.com",
+  "video": "/demo.mp4",
+  "icon": "play",
+  "color": "neutral"
+}
+```
+
+**Note**: Videos should be optimized for web (keep file sizes small). They will display at 3:2 aspect ratio by default.
+
+#### External Link (New Tab)
+```json
+{
+  "id": "unique-id",
+  "title": "External Resource",
+  "url": "https://example.com",
+  "newTab": true,
+  "color": "primary"
+}
+```
+
+Links with `newTab: true` display an external link icon instead of a chevron and open in a new tab.
+
+#### Download Link
+```json
+{
+  "id": "unique-id",
+  "title": "Download Resume",
+  "url": "/resume.pdf",
+  "icon": "download",
+  "color": "neutral"
+}
+```
+
+Files in the `/public` directory can be linked directly for downloads.
+
+### Icon Links
+
+Icon links appear as circular buttons and support all color variants:
+
+```json
+{
+  "id": "unique-id",
+  "icon": "github",
+  "url": "https://github.com/username",
+  "color": "primary"
+}
+```
+
+### Blog Post Action Buttons
+
+Add interactive buttons at the top of blog posts for demos, repositories, etc. Define them in the post frontmatter:
+
+```yaml
 ---
-
-## 🔐 Security & Best Practices
-
-### Authentication & Authorization
-- ✅ Session-based auth with httpOnly cookies
-- ✅ Role-based access control (user/owner/admin)
-- ✅ Password hashing (bcrypt assumed in production)
-- ✅ Protected routes with `isAuth` middleware
-- ✅ Owner verification for shop/item operations
-
-### Data Protection
-- 🛡️ Input sanitization in controllers
-- 🛡️ Mongoose schema validation
-- 🛡️ Sensitive data filtering (passwords never returned)
-- 🛡️ Environment variables for secrets
-- 🛡️ CORS configuration for trusted origins
-
-### Production Hardening Checklist
-- [ ] Enable HTTPS/TLS everywhere
-- [ ] Implement rate limiting (express-rate-limit)
-- [ ] Add request validation (express-validator)
-- [ ] Set up API versioning
-- [ ] Configure helmet.js for security headers
-- [ ] Implement CSRF protection
-- [ ] Add comprehensive logging (Winston/Bunyan)
-- [ ] Set up error tracking (Sentry)
-
+title: My Project Post
+description: A cool project
+publicationDate: 2025-01-01
+actionButtons:
+  - text: View on GitHub
+    url: https://github.com/username/repo
+    newTab: true
+  - text: Live Demo
+    url: https://demo.example.com
+    newTab: true
 ---
+```
 
-## 📊 Database Design
+Action buttons are:
+- Half-width on large screens, full-width on mobile
+- Styled with the secondary color theme
+- Show external link or chevron icon based on `newTab` setting
 
-### Core Models
+## 👀 Custom Favicon
 
-**User Model:**
-- Basic profile (name, email, phone, password)
-- Role differentiation (user/owner)
-- Location tracking (city, state, address, GeoJSON point)
-- Cart items and order history references
+To set up favicons for different devices, you can use [RealFaviconGenerator](https://realfavicongenerator.net/). Download the generated files and place them in the `public` folder, and update the `Favicons.astro` file with the new file names using the snippet generated by the website.
 
-**Shop Model:**
-- Owner relationship
-- Location and operating hours
-- Rich metadata (images, description, ratings)
-- City-based indexing for fast queries
+## 🖼️ Custom Icons
 
-**Item Model:**
-- Shop relationship (populated in queries)
-- Category, food type, price, availability
-- Images and detailed descriptions
-- Rating and review aggregates
+LinkTower uses [astro-icon](https://www.npmjs.com/package/astro-icon) for icons, integrating with the [Iconify](https://icon-sets.iconify.design/) collection and supporting local SVGs.
 
-**Order Model:**
-- User and delivery boy relationships
-- Multi-shop order support (nested shopOrders array)
-- Status tracking per shop
-- Payment and delivery details
+### Local SVG Icons
 
-**Delivery Assignment Model:**
-- Order-to-delivery-boy mapping
-- Status and timestamp tracking
+You can use any SVGs as icons for your site. To do so, simply place custom SVGs in `src/icons/`. SVGs in this folder are available as icons using the filename (without `.svg`).
 
-### Indexing Strategy
-- 🚀 City-based compound indexes for shop/item queries
-- 🚀 User ID indexes for fast order lookups
-- 🚀 Geospatial indexes for location-based discovery
-- 🚀 Text indexes for search functionality (future enhancement)
+For example, if you have `src/icons/mylogo.svg`, use it like this:
 
----
+```json
+{
+  "icon": "mylogo"
+}
+```
 
-## 🎯 Future Enhancements
+When adding new icons you will need to restart the Astro dev server for the icon to be available.
 
-### Planned Features
-- 🎁 **Loyalty Program**: Points and rewards system
-- 💳 **Payment Integration**: Multiple payment gateways (Stripe, Razorpay)
-- 🌍 **Multi-language Support**: i18n implementation
-- 📱 **Mobile Apps**: React Native implementation
-- 🤝 **Social Features**: Share orders, reviews, referrals
-- 📊 **Analytics Dashboard**: Business intelligence for owners
-- 🔔 **Push Notifications**: Web push for order updates
-- 🎨 **Theme Customization**: Dark mode, custom branding
+### Adding Additional Icons from Iconify
 
----
+You can install additional icons from [Iconify](https://icon-sets.iconify.design/) by running `pnpm install @iconify-json/[icon-set-name]`. For example, to install Tabler icons, run the following:
 
-## 🌟 Project Highlights
+```bash
+pnpm install @iconify-json/tabler
+```
 
-This isn't just another food delivery clone. It's a showcase of:
+Then use it like this:
 
-✨ **Modern Architecture** - Clean separation of concerns, scalable patterns
-✨ **Real-time Innovation** - Socket.io integration for live experiences
-✨ **AI Integration** - Practical use of conversational AI in e-commerce
-✨ **Production Ready** - Security, error handling, and best practices
-✨ **Developer Experience** - Clear code structure, reusable components
-✨ **User Experience** - Smooth interactions, real-time feedback, personalization
+```json
+{
+  "icon": "tabler:a-b"
+}
+```
+
+Whenever you add new icons to `src/siteConfig.json`, restart the Astro dev server for icon to be available.
+
+## 📝 License
+
+This project is open source and available under the MIT License.
+
+## Attributions
+
+LinkTower is a portfolio-focused personal link hub built with Astro, forked from [Treelink](https://github.com/trevortylerlee/treelink) with enhanced features for developers and creatives.
