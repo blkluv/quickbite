@@ -6,7 +6,7 @@
   "isBlogDisplayed": true,
   "blogHomePostLimit": 3,
   "contactFormEnabled": true,
-  "web3FormsAccessKey": "e84042ad-09cb-4c32-a433-9ec5589754f4",
+  "web3FormsAccessKey": "1dff14ec-f8b0-492e-ae29-4594489de220",
   "umamiWebsiteId": "dd667d9f-f9cd-4b59-8c17-c9681858bad7",
   "iconLinks": [
     {
@@ -123,19 +123,19 @@
       "newTab": true
     },
     {
-      "title": "VC Pitch Coaching",
-      "description": "Book a time and date to analyze your pitch deck and practice your 60 second pitch with our team of VC coaches.",
-      "url": "https://cal.com/atl5d/whisk",
+      "title": "VC Pitch - 60 Sec Video Coaching",
+      "description": "Perfect your 60 second pitch with our team of VC coaches.",
+      "url": "https://buy.stripe.com/6oU8wP6GJbT8gFh36V5wI1v",
       "newTab": true,
-      "icon": "clock",
-      "color": "base"
+      "icon": "speaking",
+      "color": "primary"
     },
     {
       "title": "Enterprise Investor Mic™",
-      "description": "We create your branded TikTok AR mic effect for your startup or fund to host your own VC pitch contest.",
-      "url": "https://discord.com/channels/1244450286337003520/1457828909205684224",
+      "description": "We build your own TikTok AR mic filter so founders can pitch you in 60 seconds—no decks, no meetings, just vibes. Get monthly analytics on who's pitching, plus we'll create short video PR that actually hits. Slap your custom QR code anywhere on your website. Stop sifting through emails; start scrolling through deals.",
+      "url": "https://buy.stripe.com/7sY28re9b7CS1Kn0YN5wI1w",
       "newTab": true,
-      "icon": "id-card",
+      "icon": "microphone",
       "color": "primary"
     }
   ]
